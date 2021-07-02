@@ -1,27 +1,18 @@
 {
-  "project_name": "My Awesome Project",
+  "project_name": "Equality Proyect",
   "project_slug": "{{ cookiecutter.project_name.lower()|replace(' ', '_')|replace('-', '_')|replace('.', '_')|trim() }}",
-  "description": "Behold My Awesome Project!",
-  "author_name": "Daniel Roy Greenfeld",
-  "domain_name": "example.com",
-  "email": "{{ cookiecutter.author_name.lower()|replace(' ', '-') }}@example.com",
+  "description": "Description!",
+  "author_name": "Adrian Borella",
+  "domain_name": "equality.coop",
+  "email": "{{ cookiecutter.author_name.lower()|replace(' ', '-') }}@equality.coop",
   "version": "0.1.0",
-  "open_source_license": [
-    "MIT",
-    "BSD",
-    "GPLv3",
-    "Apache Software License 2.0",
-    "Not open source"
-  ],
+  "open_source_license": "Not open source",
   "timezone": "UTC",
   "windows": "n",
   "use_pycharm": "n",
   "use_docker": "n",
   "postgresql_version": [
-    "13.2",
-    "12.6",
-    "11.11",
-    "10.16"
+    "13.2"
   ],
   "js_task_runner": [
     "None",
@@ -44,7 +35,7 @@
     "Other SMTP"
   ],
   "use_async": "n",
-  "use_drf": "n",
+  "use_drf": "y",
   "custom_bootstrap_compilation": "n",
   "use_compressor": "n",
   "use_celery": "n",
@@ -59,5 +50,5 @@
     "Github"
   ],
   "keep_local_envs_in_vcs": "y",
-  "debug": "n"
+  "debug": "y"
 }
