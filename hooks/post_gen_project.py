@@ -31,10 +31,10 @@ SUCCESS = "\x1b[1;32m [SUCCESS]: "
 DEBUG_VALUE = "debug"
 
 
-def remove_open_source_files():
-    file_names = ["CONTRIBUTORS.txt", "LICENSE"]
-    for file_name in file_names:
-        os.remove(file_name)
+# def remove_open_source_files():
+#     file_names = ["CONTRIBUTORS.txt", "LICENSE"]
+#     for file_name in file_names:
+#         os.remove(file_name)
 
 
 # def remove_gplv3_files():
@@ -284,9 +284,6 @@ def remove_open_source_files():
 #     shutil.rmtree(os.path.join("compose", "production", "django", "celery"))
 
 def main():
-    if "{{ cookiecutter.open_source_license }}" == "Not open source":
-        remove_open_source_files()
-        
     print(SUCCESS + "Project initialized, keep up the good work!" + TERMINATOR)
 
 
