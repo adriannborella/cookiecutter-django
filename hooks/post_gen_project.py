@@ -312,14 +312,14 @@ def remove_storages_module():
 
 
 def main():
-    debug = "{{ cookiecutter.debug }}".lower() == "y"
+    # debug = "{{ cookiecutter.debug }}".lower() == "y"
 
-    set_flags_in_envs(
-        DEBUG_VALUE if debug else generate_random_user(),
-        DEBUG_VALUE if debug else generate_random_user(),
-        debug=debug,
-    )
-    set_flags_in_settings_files()
+    # set_flags_in_envs(
+    #     DEBUG_VALUE if debug else generate_random_user(),
+    #     DEBUG_VALUE if debug else generate_random_user(),
+    #     debug=debug,
+    # )
+    # set_flags_in_settings_files()
 
     if "{{ cookiecutter.open_source_license }}" == "Not open source":
         remove_open_source_files()
