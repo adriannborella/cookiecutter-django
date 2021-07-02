@@ -7,5 +7,6 @@
   "email": "{{ cookiecutter.author_name.lower()|replace(' ', '-') }}@equality.coop",
   "version": "0.1.0",
   "open_source_license": "Not open source",
-  "timezone": "UTC"
+  "timezone": "UTC",
+  "debug": "y"
 }

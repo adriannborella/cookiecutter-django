@@ -1,16 +1,27 @@
-
-INSTALLED_APPS = [
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
-    'import_export',
-    'rest_framework',
-    'django_filters',
-    'apps.kinesiologia',
-    'admin_object_actions',
-    'django_object_actions',
-    'apps.micuartel'
+DJANGO_APPS = [
+    "django.contrib.auth",
+    "django.contrib.contenttypes",
+    "django.contrib.sessions",
+    # "django.contrib.sites",
+    "django.contrib.messages",
+    "django.contrib.staticfiles",
+    # "django.contrib.humanize", # Handy template tags
+    "django.contrib.admin",
+    # "django.forms",
 ]
+THIRD_PARTY_APPS = [
+    # "crispy_forms",
+    # "allauth",
+    # "allauth.account",
+    # "allauth.socialaccount",
+    # "rest_framework",
+    # "rest_framework.authtoken",
+    # "corsheaders",
+]
+
+LOCAL_APPS = [
+    # "equality_proyect.users.apps.UsersConfig",
+    # Your stuff: custom apps go here
+]
+# https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
+INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS

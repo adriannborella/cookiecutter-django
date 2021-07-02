@@ -19,8 +19,8 @@ from .config.middleware import *
 from .config.pass_validators import *
 
 IMPORT_EXPORT_USE_TRANSACTIONS = True
-ROOT_URLCONF = 'demo.urls'
-WSGI_APPLICATION = 'demo.wsgi.application'
+ROOT_URLCONF = 'src.urls'
+WSGI_APPLICATION = 'src.wsgi.application'
 LANGUAGE_CODE = 'es-ar'
 TIME_ZONE = 'UTC'
 USE_I18N = True
