@@ -26,7 +26,7 @@ services:
       - eq_static_volume:/home/app/web/static
       - eq_media_volume:/home/app/web/uploads
     ports:
-      - "9000:8000"
+      - "9000:9000"
     stdin_open: true
   db:
     image: "postgres:13.3"
