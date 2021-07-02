@@ -336,78 +336,7 @@ def main():
 
     if "{{ cookiecutter.open_source_license }}" == "Not open source":
         remove_open_source_files()
-    if "{{ cookiecutter.open_source_license}}" != "GPLv3":
-        remove_gplv3_files()
-
-    if "{{ cookiecutter.use_pycharm }}".lower() == "n":
-        remove_pycharm_files()
-
-    if "{{ cookiecutter.use_docker }}".lower() == "y":
-        remove_utility_files()
-    else:
-        remove_docker_files()
-
-    if (
-        "{{ cookiecutter.use_docker }}".lower() == "y"
-        and "{{ cookiecutter.cloud_provider}}".lower() != "aws"
-    ):
-        remove_aws_dockerfile()
-
-    if "{{ cookiecutter.use_heroku }}".lower() == "n":
-        remove_heroku_files()
-    elif "{{ cookiecutter.use_compressor }}".lower() == "n":
-        remove_heroku_build_hooks()
-
-    if (
-        "{{ cookiecutter.use_docker }}".lower() == "n"
-        and "{{ cookiecutter.use_heroku }}".lower() == "n"
-    ):
-        if "{{ cookiecutter.keep_local_envs_in_vcs }}".lower() == "y":
-            print(
-                INFO + ".env(s) are only utilized when Docker Compose and/or "
-                "Heroku support is enabled so keeping them does not "
-                "make sense given your current setup." + TERMINATOR
-            )
-        remove_envs_and_associated_files()
-    else:
-        append_to_gitignore_file(".env")
-        append_to_gitignore_file(".envs/*")
-        if "{{ cookiecutter.keep_local_envs_in_vcs }}".lower() == "y":
-            append_to_gitignore_file("!.envs/.local/")
-
-    if "{{ cookiecutter.js_task_runner}}".lower() == "none":
-        remove_gulp_files()
-        remove_packagejson_file()
-        if "{{ cookiecutter.use_docker }}".lower() == "y":
-            remove_node_dockerfile()
-
-    if "{{ cookiecutter.cloud_provider}}".lower() == "none":
-        print(
-            WARNING + "You chose not to use a cloud provider, "
-            "media files won't be served in production." + TERMINATOR
-        )
-        remove_storages_module()
-
-    if "{{ cookiecutter.use_celery }}".lower() == "n":
-        remove_celery_files()
-        if "{{ cookiecutter.use_docker }}".lower() == "y":
-            remove_celery_compose_dirs()
-
-    if "{{ cookiecutter.ci_tool }}".lower() != "travis":
-        remove_dottravisyml_file()
-
-    if "{{ cookiecutter.ci_tool }}".lower() != "gitlab":
-        remove_dotgitlabciyml_file()
-
-    if "{{ cookiecutter.ci_tool }}".lower() != "github":
-        remove_dotgithub_folder()
-
-    if "{{ cookiecutter.use_drf }}".lower() == "n":
-        remove_drf_starter_files()
-
-    if "{{ cookiecutter.use_async }}".lower() == "n":
-        remove_async_files()
-
+        
     print(SUCCESS + "Project initialized, keep up the good work!" + TERMINATOR)
 
 
