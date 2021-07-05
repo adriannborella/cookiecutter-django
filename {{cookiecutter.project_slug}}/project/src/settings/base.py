@@ -20,6 +20,7 @@ from .config.pass_validators import *
 from .config.rest_framework import *
 from .config.jwt import *
 from .config.cors import *
+from .config.material_admin import *
 
 IMPORT_EXPORT_USE_TRANSACTIONS = True
 ROOT_URLCONF = 'src.urls'

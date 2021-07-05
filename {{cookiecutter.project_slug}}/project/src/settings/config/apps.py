@@ -1,4 +1,6 @@
 DJANGO_APPS = [
+    'material', #https://pypi.org/project/django-material-admin/
+    'material.admin',
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
