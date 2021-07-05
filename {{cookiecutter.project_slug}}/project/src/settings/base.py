@@ -17,6 +17,9 @@ from .config.templates import *
 from .config.dir import *
 from .config.middleware import *
 from .config.pass_validators import *
+from .config.rest_framework import *
+from .config.jwt import *
+from .config.cors import *
 
 IMPORT_EXPORT_USE_TRANSACTIONS = True
 ROOT_URLCONF = 'src.urls'
