@@ -1,12 +1,13 @@
 {
-  "project_name": "Equality Proyect",
+  "project_name": "Your Proyect's Name",
   "project_slug": "{{ cookiecutter.project_name.lower()|replace(' ', '_')|replace('-', '_')|replace('.', '_')|trim() }}",
   "description": "Description!",
-  "author_name": "Adrian Borella",
-  "domain_name": "equality.coop",
-  "email": "{{ cookiecutter.author_name.lower()|replace(' ', '-') }}@equality.coop",
+  "author_name": "adriannborella",
+  "domain_name": "domain.com",
+  "email": "{{ cookiecutter.author_name.lower()|replace(' ', '-') }}@gmail.com",
   "version": "0.1.0",
   "open_source_license": "Not open source",
   "timezone": "UTC",
+  "port": "10000",
   "debug": "y"
 }

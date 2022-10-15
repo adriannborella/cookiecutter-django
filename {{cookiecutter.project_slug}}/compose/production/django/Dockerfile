@@ -1,24 +1,21 @@
-FROM python:3.9
+FROM python:3.9-slim-buster
 
-ENV PYTHONUNBUFFERED 1
+WORKDIR /home/app/web
 
-ENV HOME=/home/app
-ENV APP_HOME=$HOME/web
+COPY compose/production/django/entrypoint.sh back/requirements/base.txt back/requirements/production.txt /
 
-RUN mkdir $HOME
-RUN mkdir $APP_HOME
-RUN mkdir $APP_HOME/static
-RUN mkdir $APP_HOME/uploads
+RUN    mkdir /home/app/static \
+    && mkdir /home/app/media \
+    && mkdir /home/app/import_files \
+    && mkdir /home/app/logs \
+    && apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false \ 
+    && pip install --no-cache-dir -U pip \
+    && pip install --no-cache-dir -r /production.txt \
+    && rm /base.txt \
+    && rm /production.txt 
 
-ADD requirements/base.txt $APP_HOME
-ADD requirements/production.txt $APP_HOME
+COPY ./back/manage.py /home/app/web/
+COPY ./back/apps /home/app/web/apps
+COPY ./back/src /home/app/web/src
 
-RUN pip install -U pip
-RUN pip install -r $APP_HOME/production.txt
-
-ADD ./project $APP_HOME
-ADD compose/production/django/entrypoint.sh /
-RUN chmod +x /entrypoint.sh
-
-WORKDIR $APP_HOME
 CMD ["/entrypoint.sh"]

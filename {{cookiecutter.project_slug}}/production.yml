@@ -1,7 +1,8 @@
-version: '3'
+version: "3"
 
-services:  
+services:
   django:
+    restart: always
     build:
       context: .
       dockerfile: ./compose/production/django/Dockerfile
@@ -22,12 +23,16 @@ services:
       - CSRF_COOKIE_SECURE=True
       - SESSION_COOKIE_SECURE=True
       - SECURE_HSTS_PRELOAD=True
+      - DJANGO_SETTINGS_MODULE=src.settings.production
+      - RUNSERVER_PORT=9000
+      - RUNSERVER_ADDR=0.0.0.0
     volumes:
-      - eq_static_volume:/home/app/web/static
-      - eq_media_volume:/home/app/web/uploads
+      - eq_static_volume:/home/app/static
+      - eq_media_volume:/home/app/media
     stdin_open: true
   db:
-    image: "postgres:13.3"
+    restart: always
+    image: "postgres:13.4-alpine"
     environment:
       - POSTGRES_DB=db_develop
       - POSTGRES_USER=eq_production
@@ -35,15 +40,17 @@ services:
     stdin_open: true
     volumes:
       - eq_postgres_volume:/var/lib/mysql
-  nginx:    
+  nginx:
+    restart: always
     build:
       context: .
       dockerfile: ./compose/production/nginx/Dockerfile
     ports:
       - 8080:80
     volumes:
-      - eq_static_volume:/home/app/web/static
-      - eq_media_volume:/home/app/web/uploads
+      - ./compose/production/nginx/letsencrypt:/etc/letsencrypt
+      - eq_static_volume:/home/app/static
+      - eq_media_volume:/home/app/media
     depends_on:
       - django
 volumes:
