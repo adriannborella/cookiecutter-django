@@ -1,0 +1,39 @@
+version: '3'
+
+services:
+  web:
+    image: $AP_WEB_IMAGE
+    entrypoint: ['/cache/entrypoint.sh']
+    build:
+      context: ../../../src/web
+      dockerfile: ./Dockerfile
+      args:
+        AP_REQUIREMENT_FILE: 'base.txt'
+        AP_IMAGE_FROM: 'python:3.9-bullseye'
+    command: gunicorn --bind 0.0.0.0:5000 -w 8 src.wsgi:application
+    depends_on:
+      - db
+    env_file:
+      - ./web.env
+    ports:
+      - '{{ cookiecutter.production_port }}0:5000'
+    stdin_open: true
+  db:
+    image: 'postgres:15.3-alpine'
+    env_file:
+      - ./db.env
+    ports:
+      - '{{ cookiecutter.production_port }}1:5432'
+  lb:
+    image: $AP_LB_IMAGE
+    build:
+      context: ../../../src/lb
+      dockerfile: ./Dockerfile
+    ports:
+      - '{{ cookiecutter.production_port }}0:80'
+    depends_on:
+      - web
+volumes:
+  postgres_volume_prod:
+  static_volume_prod:
+  media_volume_prod:

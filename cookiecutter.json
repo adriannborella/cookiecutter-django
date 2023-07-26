@@ -8,6 +8,8 @@
   "version": "0.1.0",
   "open_source_license": "Not open source",
   "timezone": "UTC",
-  "port": "10000",
+  "port": "1000",
+  "production_port": "1001",
+  "registry": "adriannborella",
   "debug": "y"
 }

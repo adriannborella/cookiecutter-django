@@ -1,0 +1,53 @@
+version: '3'
+
+services:
+  front:
+    build:
+      context: ../../../src/client
+      dockerfile: ./Dockerfile
+    command: yarn start
+    env_file:
+      - ./front.env
+    # network_mode: host
+    ports:
+      - '{{ cookiecutter.port }}3:3000'
+    volumes:
+      - ../../../src/client/src:/home/app/react
+  web:
+    entrypoint: ['/cache/entrypoint.sh']
+    build:
+      context: ../../../src/web
+      dockerfile: ./Dockerfile
+      args:
+        AP_REQUIREMENT_FILE: 'local.txt'
+        AP_IMAGE_FROM: 'python:3.9-bullseye'
+    # command: python3 manage.py runserver
+    command: python3 -m debugpy --listen 0.0.0.0:{{ cookiecutter.port }}2 manage.py runserver
+    depends_on:
+      - db
+    env_file:
+      - ./web.env
+    volumes:
+      - ../../../src/web/{{cookiecutter.project_name}}:/opt/{{cookiecutter.project_slug}}/web
+      - static_volume:/opt/{{cookiecutter.project_slug}}/static
+      - media_volume:/opt/{{cookiecutter.project_slug}}/media
+    ports:
+      - '{{ cookiecutter.port }}0:11000{{ cookiecutter.port }}0'
+      - '{{ cookiecutter.port }}2:{{ cookiecutter.port }}2'
+  db:
+    build:
+      context: ../../../src/db
+      dockerfile: ./Dockerfile
+    env_file:
+      - ./db.env
+    ports:
+      - '{{ cookiecutter.port }}1:5432'
+    volumes:
+      - postgres_volume:/var/lib/mysql
+      - ../../../src/db/scripts:/home/app/scripts
+    extra_hosts:
+      - 'host.docker.internal:host-gateway'
+volumes:
+  postgres_volume:
+  static_volume:
+  media_volume:

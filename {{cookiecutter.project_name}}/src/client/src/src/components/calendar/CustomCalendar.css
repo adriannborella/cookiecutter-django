@@ -1,0 +1,34 @@
+
+/* .dayHeaderClassNames {
+    background-color: red;
+} */
+/* .dayCellClassNames {
+    background-color: rgb(138, 66, 66);
+} */
+.viewClassNames {
+    height: 400px;
+    @media screen and (max-width: 480px) {
+        height: 600px;
+    }
+}
+/* .nowIndicatorClassNames {
+    background-color: gold;
+}
+.weekNumberClassNames {
+    background-color: rebeccapurple;
+}
+.eventClassNames {
+    background-color: blue;
+}
+.slotLaneClassNames {
+    background-color: blueviolet;
+}
+.slotLabelClassNames {
+    background-color: black;
+}
+.allDayClassNames {
+    background-color: turquoise;
+}
+.moreLinkClassNames {
+    background-color: orange;
+} */
